@@ -59,7 +59,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: asaka_walk 0
+  m_Name: asaka_walk
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -189,34 +189,34 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 4170823288304878079}
-    m_Position: {x: 200, y: 0, z: 0}
+    m_Position: {x: 30, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5954592613819402678}
-    m_Position: {x: 235, y: 65, z: 0}
+    m_Position: {x: 30, y: 260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4257825723765684725}
-    m_Position: {x: 270, y: 130, z: 0}
+    m_Position: {x: 30, y: 320, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7700837325186386790}
-    m_Position: {x: 305, y: 195, z: 0}
+    m_Position: {x: 30, y: 380, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6439076783047921820}
-    m_Position: {x: 340, y: 260, z: 0}
+    m_Position: {x: 260, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3340885340619871366}
-    m_Position: {x: 375, y: 325, z: 0}
+    m_Position: {x: 260, y: 260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2620406700768079561}
-    m_Position: {x: 410, y: 390, z: 0}
+    m_Position: {x: 260, y: 320, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -626011739736616212}
-    m_Position: {x: 445, y: 455, z: 0}
+    m_Position: {x: 260, y: 380, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3952751432064547834}
-    m_Position: {x: 480, y: 520, z: 0}
+    m_Position: {x: 480, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1637236551727903719}
-    m_Position: {x: 515, y: 585, z: 0}
+    m_Position: {x: 480, y: 260, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -312,7 +312,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: asaka_walk
+  m_Name: asaka_idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
