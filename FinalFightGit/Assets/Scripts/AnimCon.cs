@@ -18,6 +18,12 @@ public class AnimCon : MonoBehaviour
         float time = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
         if (currentState == AnimString.asaka_jump && time >= 1)
             canExit = true;
+        if (currentState == AnimString.asaka_punch && time >= 1)
+            canExit = true;
+        if (currentState == AnimString.asaka_upper && time >= 1)
+            canExit = true;
+        if (currentState == AnimString.asaka_bodyblow && time >= 1)
+            canExit = true;
     }
 
     private void ChangeState(string newState)
@@ -44,5 +50,20 @@ public class AnimCon : MonoBehaviour
     {
         canExit = false;
         ChangeState(AnimString.asaka_jump);
+    }
+    public void PlayPunch()
+    {
+        canExit = false;
+        ChangeState(AnimString.asaka_punch);
+    }
+    public void PlayUpper()
+    {
+        canExit = false;
+        ChangeState(AnimString.asaka_upper);
+    }
+    public void PlayBodyBlow()
+    {
+        canExit = false;
+        ChangeState(AnimString.asaka_bodyblow);
     }
 }

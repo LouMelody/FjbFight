@@ -13,7 +13,7 @@ public static class AnimString
     public static readonly string asaka_jumpkick = AsakaPrefix("jumpkick");
     public static readonly string asaka_punch = AsakaPrefix("punch");
     public static readonly string asaka_up = AsakaPrefix("up");
-    public static readonly string asaka_upper = AsakaPrefix("uppper");
+    public static readonly string asaka_upper = AsakaPrefix("upper");
     public static readonly string asaka_walk = AsakaPrefix("walk");
     #endregion
 

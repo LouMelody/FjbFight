@@ -21,6 +21,12 @@ public class IsometricPlayerMovementController : MonoBehaviour
         {
             animCon.PlayJump();
         }
+        if (Input.GetKeyDown(KeyCode.L))
+            animCon.PlayPunch();
+        if (Input.GetKeyDown(KeyCode.I))
+            animCon.PlayUpper();
+        if (Input.GetKeyDown(KeyCode.K))
+            animCon.PlayBodyBlow();
     }
     void FixedUpdate()
     {
