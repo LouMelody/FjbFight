@@ -15,12 +15,19 @@ public class IsometricPlayerMovementController : MonoBehaviour
         rbody = GetComponent<Rigidbody2D>();
     }
 
-
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            animCon.PlayJump();
+        }
+    }
     void FixedUpdate()
     {
         Vector2 currentPos = rbody.position;
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
+
         Vector2 inputVector = new Vector2(horizontalInput, verticalInput);
         animCon.ChangeDirection(inputVector.magnitude);
         inputVector = Vector2.ClampMagnitude(inputVector, 1);
