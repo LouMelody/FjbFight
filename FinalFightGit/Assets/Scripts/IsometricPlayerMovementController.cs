@@ -20,8 +20,9 @@ public class IsometricPlayerMovementController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            animCon.PlayJump();
             StartCoroutine(nameof(Jump));
+            if(!isJump)
+                animCon.PlayJump();
         }
         if (Input.GetKeyDown(KeyCode.L))
             animCon.PlayPunch();
@@ -56,16 +57,16 @@ public class IsometricPlayerMovementController : MonoBehaviour
         {
             if (elapsed <= 0.5f)
             {
-                var posY = transform.position.y;
-                var newPos = new Vector2(transform.position.x, posY + Abs(posY * jumpSpeed * Time.deltaTime));
-                rbody.MovePosition(newPos);
+                //var posY = transform.position.y;
+                //var newPos = new Vector2(transform.position.x, posY + Abs(posY * jumpSpeed * Time.deltaTime));
+                //rbody.MovePosition(newPos);
                 elapsed += Time.deltaTime;
             }
             else if (elapsed <= 1f)
             {
-                var posY = transform.position.y;
-                var newPos = new Vector2(transform.position.x,  posY + -Abs(posY * -jumpSpeed * Time.deltaTime));
-                rbody.MovePosition(newPos);
+                // var posY = transform.position.y;
+                // var newPos = new Vector2(transform.position.x,  posY + -Abs(posY * -jumpSpeed * Time.deltaTime));
+                // rbody.MovePosition(newPos);
                 elapsed += Time.deltaTime;
             }
             else

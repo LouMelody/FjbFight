@@ -36,6 +36,12 @@ public class EnemyAI : MonoBehaviour
         }
         StartCoroutine(nameof(AITimer));
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.name == "Low")
+            Debug.Log("triggered");
+    }
     // inner
     EnemyState MainRoutine()
     {

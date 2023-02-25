@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class AnimCon : MonoBehaviour
 {
@@ -50,6 +51,7 @@ public class AnimCon : MonoBehaviour
     {
         canExit = false;
         ChangeState(AnimString.asaka_jump);
+        transform.DOJump(transform.position, 2, 1, 1);
     }
     public void PlayPunch()
     {
