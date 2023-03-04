@@ -17,8 +17,25 @@ public static class AnimString
     public static readonly string asaka_walk = AsakaPrefix("walk");
     #endregion
 
+    #region アニメーション定数: Ishikawa
+    public static readonly string ishikawa_bodyblow = IshikawaPrefix("bodyblow");
+    public static readonly string ishikawa_damage = IshikawaPrefix("damage");
+    public static readonly string ishikawa_down = IshikawaPrefix("down");
+    public static readonly string ishikawa_idle = IshikawaPrefix("idle");
+    public static readonly string ishikawa_jump = IshikawaPrefix("jump");
+    public static readonly string ishikawa_jumpkick = IshikawaPrefix("jumpkick");
+    public static readonly string ishikawa_punch = IshikawaPrefix("punch");
+    public static readonly string ishikawa_up = IshikawaPrefix("up");
+    public static readonly string ishikawa_upper = IshikawaPrefix("upper");
+    public static readonly string ishikawa_walk = IshikawaPrefix("walk");
+    #endregion
     private static string AsakaPrefix(string value)
     {
         return "asaka_" + value;
+    }
+
+    private static string IshikawaPrefix(string value)
+    {
+        return "ishikawa_" + value;
     }
 }

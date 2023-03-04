@@ -8,6 +8,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
     public float movementSpeed = 1f;
     public float jumpSpeed = 3f;
     public AnimCon animCon;
+    public bool isPlayer;
 
     private Rigidbody2D rbody;
     private bool isJump = false;
@@ -18,33 +19,52 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(isPlayer)
         {
-            StartCoroutine(nameof(Jump));
-            if(!isJump)
-                animCon.PlayJump();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                StartCoroutine(nameof(Jump));
+                if (!isJump)
+                    animCon.PlayJump();
+            }
+            if (Input.GetKeyDown(KeyCode.L))
+                animCon.PlayPunch();
+            if (Input.GetKeyDown(KeyCode.I))
+                animCon.PlayUpper();
+            if (Input.GetKeyDown(KeyCode.K))
+                animCon.PlayBodyBlow();
         }
-        if (Input.GetKeyDown(KeyCode.L))
-            animCon.PlayPunch();
-        if (Input.GetKeyDown(KeyCode.I))
-            animCon.PlayUpper();
-        if (Input.GetKeyDown(KeyCode.K))
-            animCon.PlayBodyBlow();
     }
     void FixedUpdate()
     {
+        if(isPlayer)
+        {
+            Vector2 currentPos = rbody.position;
+            float horizontalInput = Input.GetAxis("Horizontal");
+            float verticalInput = Input.GetAxis("Vertical");
+
+            Vector2 inputVector = new Vector2(horizontalInput, verticalInput);
+            if (!isJump) animCon.ChangeDirection(inputVector.magnitude);
+            inputVector = Vector2.ClampMagnitude(inputVector, 1);
+            Vector2 movement = inputVector * movementSpeed;
+            Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
+            if (!isJump) rbody.MovePosition(newPos);
+        }
+    }
+
+    public void EnemyMove(float horizontal, float vertical)
+    {
         Vector2 currentPos = rbody.position;
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = horizontal;
+        float verticalInput = vertical;
 
         Vector2 inputVector = new Vector2(horizontalInput, verticalInput);
-        if(!isJump) animCon.ChangeDirection(inputVector.magnitude);
+        if (!isJump) animCon.ChangeDirection(inputVector.magnitude);
         inputVector = Vector2.ClampMagnitude(inputVector, 1);
         Vector2 movement = inputVector * movementSpeed;
         Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
-        if(!isJump) rbody.MovePosition(newPos);
+        if (!isJump) rbody.MovePosition(newPos);
     }
-
     private IEnumerator Jump()
     {
         if (isJump) yield break;
