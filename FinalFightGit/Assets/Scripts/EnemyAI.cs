@@ -19,8 +19,11 @@ public class EnemyAI : MonoBehaviour
         Attack,
     }
     private EnemyState enemyState = EnemyState.Wait;
+    private Coroutine walkRoutine;
     private bool drawable = true;
     private float ellapsed = 0f;
+    private float walkTimer = 0f;
+    private (int x, int y) enemyInput = (0 , 0);
     private Rigidbody2D rb;
 
     private void Start()
@@ -39,44 +42,46 @@ public class EnemyAI : MonoBehaviour
         if (!drawable) return;
 
         enemyState = MainRoutine();
-        Coroutine walkRoutine = null;
-        switch(enemyState)
-        { 
+
+        switch (enemyState)
+        {
             case EnemyState.Wait:
+                StopAllCoroutines();
                 Debug.Log("wait");
                 break;
+            case EnemyState.Attack:
+                StopAllCoroutines();
+                StartCoroutine(nameof(AttackCoroutine));
+                break;
+        }
+
+        drawable = false;
+    }
+
+    private void FixedUpdate()
+    {
+        switch (enemyState)
+        {
             case EnemyState.Walk:
-                StartCoroutine(nameof(RandomWalk));
+                StopAllCoroutines();
+                walkTimer += Time.fixedDeltaTime;
+                if(walkTimer >= 3f)
+                {
+                    walkTimer = 0f;
+                    enemyInput = (Random.Range(-1, 2), Random.Range(-1, 2));
+                }
+                moveCon.EnemyMove(enemyInput.x, enemyInput.y);
                 Debug.Log("walk");
                 break;
             case EnemyState.Chase:
+                StopAllCoroutines();
                 Vector3 newPos = Vector3.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
                 rb.MovePosition(newPos);
                 Debug.Log("chase");
                 break;
-            case EnemyState.Attack:
-                int randValue = Random.Range(0, 3);
-                switch(randValue)
-                {
-                    case 0:
-                        animCon.PlayBodyBlow();
-                        break;
-                    case 1:
-                        animCon.PlayPunch();
-                        break;
-                    case 2:
-                        animCon.PlayUpper();
-                        break;
-                }
-                break;
         }
         animCon.ChangeDirection(rb.velocity.magnitude);
-        //StartCoroutine(nameof(AITimer));
-        drawable = false;
-        if(walkRoutine != null)
-            StopCoroutine(walkRoutine);
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.name == "Low")
@@ -94,30 +99,57 @@ public class EnemyAI : MonoBehaviour
             3 => EnemyState.Attack,
         };
     }
-    IEnumerator AITimer()
-    {
-        //coroutineRunning = true;
-        yield return new WaitForSeconds(4f);
-        //coroutineRunning = false;
-    }
     IEnumerator RandomWalk()
     {
-        int randValue = Random.Range(0, 4);
-        switch(randValue)
+        while(true)
         {
-            case 0:
-                moveCon.EnemyMove(1, 0);  // âE
-                break;
-            case 1:
-                moveCon.EnemyMove(-1, 0); // ç∂
-                break;
-            case 2:
-                moveCon.EnemyMove(0, 1);  // è„
-                break;
-            case 3:
-                moveCon.EnemyMove(0, -1);  //  â∫
-                break;
+            int randValue = Random.Range(0, 4);
+            switch (randValue)
+            {
+                case 0:
+                    for(int i = 0; i < 5; i++)
+                        moveCon.EnemyMove(1, 0);  // âE
+                    yield return new WaitForSeconds(0.3f);
+                    break;
+                case 1:
+                    for (int i = 0; i < 5; i++)
+                        moveCon.EnemyMove(-1, 0); // ç∂
+                    yield return new WaitForSeconds(0.3f);
+                    break;
+                case 2:
+                    for (int i = 0; i < 5; i++)
+                        moveCon.EnemyMove(0, 1);  // è„
+                    yield return new WaitForSeconds(0.3f);
+                    break;
+                case 3:
+                    for (int i = 0; i < 5; i++)
+                        moveCon.EnemyMove(0, -1);  //  â∫
+                    yield return new WaitForSeconds(0.3f);
+                    break;
+            }
         }
-        yield return null;
+    }
+
+    IEnumerator AttackCoroutine()
+    {
+        while(true)
+        {
+            int randValue = Random.Range(0, 3);
+            switch (randValue)
+            {
+                case 0:
+                    animCon.PlayBodyBlow();
+                    yield return new WaitForSeconds(0.5f);
+                    break;
+                case 1:
+                    animCon.PlayPunch();
+                    yield return new WaitForSeconds(0.5f);
+                    break;
+                case 2:
+                    animCon.PlayUpper();
+                    yield return new WaitForSeconds(0.5f);
+                    break;
+            }
+        }
     }
 }
