@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using TMPro;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class BossEnemyAi : MonoBehaviour
 {
     public AnimConIshi animCon;
     public Transform playerTransform;
@@ -24,7 +23,7 @@ public class EnemyAI : MonoBehaviour
     private bool drawable = true;
     private float ellapsed = 0f;
     private float walkTimer = 0f;
-    private (int x, int y) enemyInput = (0 , 0);
+    private (int x, int y) enemyInput = (0, 0);
     private int randValue;
     private Rigidbody2D rb;
 
@@ -32,7 +31,6 @@ public class EnemyAI : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         playerTransform = GameObject.Find("Player").transform;
-        randValue = Random.Range(0, 3);
     }
     private void Update()
     {
@@ -55,6 +53,7 @@ public class EnemyAI : MonoBehaviour
                 break;
             case EnemyState.Attack:
                 StopAllCoroutines();
+                randValue = Random.Range(0, 3);
                 StartCoroutine(nameof(AttackCoroutine));
                 break;
         }
@@ -69,7 +68,7 @@ public class EnemyAI : MonoBehaviour
             case EnemyState.Walk:
                 StopAllCoroutines();
                 walkTimer += Time.fixedDeltaTime;
-                if(walkTimer >= 3f)
+                if (walkTimer >= 3f)
                 {
                     walkTimer = 0f;
                     enemyInput = (Random.Range(-1, 2), Random.Range(-1, 2));
@@ -88,7 +87,7 @@ public class EnemyAI : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.name == "Low")
+        if (collision.gameObject.name == "Low")
             Debug.Log("triggered");
     }
     // inner
@@ -105,13 +104,13 @@ public class EnemyAI : MonoBehaviour
     }
     IEnumerator RandomWalk()
     {
-        while(true)
+        while (true)
         {
             int randValue = Random.Range(0, 4);
             switch (randValue)
             {
                 case 0:
-                    for(int i = 0; i < 5; i++)
+                    for (int i = 0; i < 5; i++)
                         moveCon.EnemyMove(1, 0);  // ‰E
                     yield return new WaitForSeconds(0.3f);
                     break;
@@ -136,7 +135,7 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator AttackCoroutine()
     {
-        while(true)
+        while (true)
         {
             switch (randValue)
             {

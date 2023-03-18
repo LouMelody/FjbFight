@@ -23,11 +23,17 @@ public class Attack : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
-
+            attackable = false;
+            StartCoroutine(DelayMethod(2.5f, mid => mid.enabled = true, middle));
+            StartCoroutine(DelayMethod(0.3f, mid => mid.enabled = false, middle));
+            attackable = true;
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-
+            attackable = false;
+            StartCoroutine(DelayMethod(2.5f, high => low.enabled = true, high));
+            StartCoroutine(DelayMethod(0.3f, high => low.enabled = false, high));
+            attackable = true;
         }
     }
 
