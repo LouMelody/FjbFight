@@ -11,11 +11,27 @@ public class Attack : MonoBehaviour
     public Collider2D high;
 
     private bool attackable = true;
-    // Update is called once per frame
+
+    [Header("SE")]
+    public AudioClip punch;
+    public AudioClip bodyblow;
+    public AudioClip upper;
+
+    AudioSource audioSource;
+ 
+    void Start () 
+    {
+        //Component‚ðŽæ“¾
+        audioSource = GetComponentInParent<AudioSource>();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.L) && attackable)
         {
+            //Œø‰Ê‰¹
+            audioSource.PlayOneShot(punch);
+
             attackable = false;
             StartCoroutine(DelayMethod(2.5f, low => low.enabled = true, low));
             StartCoroutine(DelayMethod(0.3f, low => low.enabled = false, low));
@@ -23,6 +39,9 @@ public class Attack : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
+            //Œø‰Ê‰¹
+            audioSource.PlayOneShot(upper);
+
             attackable = false;
             StartCoroutine(DelayMethod(2.5f, mid => mid.enabled = true, middle));
             StartCoroutine(DelayMethod(0.3f, mid => mid.enabled = false, middle));
@@ -30,6 +49,9 @@ public class Attack : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
+            //Œø‰Ê‰¹
+            audioSource.PlayOneShot(bodyblow);
+
             attackable = false;
             StartCoroutine(DelayMethod(2.5f, high => low.enabled = true, high));
             StartCoroutine(DelayMethod(0.3f, high => low.enabled = false, high));

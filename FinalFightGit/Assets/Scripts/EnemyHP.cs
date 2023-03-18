@@ -19,4 +19,5 @@ public class EnemyHP : MonoBehaviour
     {
         currentHp = Mathf.Max(currentHp - damage, 0);
     }
+
 }
