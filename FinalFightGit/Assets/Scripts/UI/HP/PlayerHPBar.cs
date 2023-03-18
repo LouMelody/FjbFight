@@ -65,13 +65,5 @@ public class PlayerHPBar : MonoBehaviour
         {
             SceneManager.LoadScene("GameOver");
         }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            //Œø‰Ê‰¹
-            audioSource.PlayOneShot(damageSE);
-            var tempHp = Mathf.Max(currentHp -= 500f, 0);
-            slider.value = (tempHp / maxHp);
-            GameOver();
-        }
     }
 }
