@@ -18,7 +18,14 @@ public class PlayerHPBar : MonoBehaviour
         //現在のHPを最大HPと同じに。
         currentHp = maxHp;
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.name == "Mid")
+        {
+            TakeDamage(10);
+            Debug.Log("damage");
+        }
+    }
     //被ダメージ反映処理
     public void TakeDamage(float damage)
     {

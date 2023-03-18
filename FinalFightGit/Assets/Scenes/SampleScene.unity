@@ -334,8 +334,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44f8689678737454eab41a008dc9f229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createEnemy: {fileID: 0}
-  createBoss: {fileID: 0}
+  createEnemy: {fileID: 4240927635871266907, guid: f1bf8cbe84576e3438f8ff935b332f74, type: 3}
+  createBoss: {fileID: 4202253785222027535, guid: 365b2469639acee4c91dc0363009b66b, type: 3}
 --- !u!1 &66604615
 GameObject:
   m_ObjectHideFlags: 0
@@ -26067,7 +26067,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &245493651
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26171,6 +26171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff3fdf2a4ac50064baae72ea886682d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpBar: {fileID: 0}
   animCon: {fileID: 245493655}
   playerTransform: {fileID: 31474313}
   moveCon: {fileID: 245493656}
@@ -26800,7 +26801,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814965966}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -31301,6 +31302,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1014547385288577819, guid: 86ca1de5663c21d42b6899f6067cb996, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1014547386341904025, guid: 86ca1de5663c21d42b6899f6067cb996, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -31501,7 +31506,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2000154484}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1

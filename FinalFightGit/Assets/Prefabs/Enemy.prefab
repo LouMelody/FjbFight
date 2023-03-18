@@ -43,6 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9140094142846232650}
   - component: {fileID: 5329652128933418987}
+  - component: {fileID: 1328451783117250164}
   m_Layer: 0
   m_Name: HurtBox
   m_TagString: Untagged
@@ -90,6 +91,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2979853, y: 5.1259546}
   m_EdgeRadius: 0
+--- !u!114 &1328451783117250164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2762774624984599003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35cc840e22c63c24b8ef34742238755d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2910685880090830547
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,6 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff3fdf2a4ac50064baae72ea886682d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpBar: {fileID: 0}
   animCon: {fileID: 4240927635871266910}
   playerTransform: {fileID: 0}
   moveCon: {fileID: 4240927635871266897}

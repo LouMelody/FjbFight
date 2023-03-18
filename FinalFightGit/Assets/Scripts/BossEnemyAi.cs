@@ -26,11 +26,15 @@ public class BossEnemyAi : MonoBehaviour
     private (int x, int y) enemyInput = (0, 0);
     private int randValue;
     private Rigidbody2D rb;
-
+    private Collider2D playerHurtBox;
+    private PlayerHPBar hpBar;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerTransform = GameObject.Find("Player").transform;
+        hpBar = GameObject.Find("Player").GetComponent<PlayerHPBar>();
+        playerHurtBox = GameObject.Find("Player").transform.GetChild(0).GetComponent<Collider2D>();
+
     }
     private void Update()
     {
@@ -141,14 +145,17 @@ public class BossEnemyAi : MonoBehaviour
             {
                 case 0:
                     animCon.PlayBodyBlow();
+                    yield return LowHit();
                     yield return new WaitForSeconds(0.5f);
                     break;
                 case 1:
                     animCon.PlayPunch();
+                    yield return MiddleHit();
                     yield return new WaitForSeconds(0.5f);
                     break;
                 case 2:
                     animCon.PlayUpper();
+                    yield return HighHit();
                     yield return new WaitForSeconds(0.5f);
                     break;
             }
@@ -164,19 +171,25 @@ public class BossEnemyAi : MonoBehaviour
     public Collider2D low;
     public Collider2D middle;
     public Collider2D high;
-    private void LowHit()
+    private IEnumerator LowHit()
     {
-        StartCoroutine(DelayMethod(2.5f, low => low.enabled = true, low));
+        yield return StartCoroutine(DelayMethod(2.5f, low => low.enabled = true, low));
+        if (middle.IsTouching(playerHurtBox))
+            hpBar.TakeDamage(10);
         StartCoroutine(DelayMethod(0.3f, low => low.enabled = false, low));
     }
-    private void MiddleHit()
+    private IEnumerator MiddleHit()
     {
-        StartCoroutine(DelayMethod(2.5f, mid => mid.enabled = true, middle));
+        yield return StartCoroutine(DelayMethod(0.5f, mid => mid.enabled = true, middle));
+        if (middle.IsTouching(playerHurtBox))
+            hpBar.TakeDamage(10);
         StartCoroutine(DelayMethod(0.3f, mid => mid.enabled = false, middle));
     }
-    private void HighHit()
+    private IEnumerator HighHit()
     {
-        StartCoroutine(DelayMethod(2.5f, high => low.enabled = true, high));
-        StartCoroutine(DelayMethod(0.3f, high => low.enabled = false, high));
+        yield return StartCoroutine(DelayMethod(2.5f, high => high.enabled = true, high));
+        if (middle.IsTouching(playerHurtBox))
+            hpBar.TakeDamage(10);
+        StartCoroutine(DelayMethod(0.3f, high => high.enabled = false, high));
     }
 }
