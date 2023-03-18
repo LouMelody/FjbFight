@@ -1,20 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class PlayerHPBar : MonoBehaviour
+public class EnemyHP : MonoBehaviour
 {
     //最大HPと現在のHP。
-    float maxHp = 1000;
+    float maxHp = 100;
     float currentHp;
-    //HPBar_Playerを入れる
-    public Slider slider;
 
     void Start()
     {
-        //Sliderを満タンにする。
-        slider.value = 1;
         //現在のHPを最大HPと同じに。
         currentHp = maxHp;
     }
@@ -22,7 +17,6 @@ public class PlayerHPBar : MonoBehaviour
     //被ダメージ反映処理
     public void TakeDamage(float damage)
     {
-        var tempHp = Mathf.Max(currentHp -= damage, 0);
-        slider.value = (tempHp / maxHp);
+        currentHp = Mathf.Max(currentHp - damage, 0);
     }
 }
