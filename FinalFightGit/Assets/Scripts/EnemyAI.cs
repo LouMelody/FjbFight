@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 
@@ -153,5 +154,30 @@ public class EnemyAI : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private IEnumerator DelayMethod(float waitTime, System.Action<Collider2D> action, Collider2D col)
+    {
+        yield return new WaitForSeconds(waitTime);
+        action(col);
+    }
+
+    public Collider2D low;
+    public Collider2D middle;
+    public Collider2D high;
+    private void LowHit()
+    {
+        StartCoroutine(DelayMethod(2.5f, low => low.enabled = true, low));
+        StartCoroutine(DelayMethod(0.3f, low => low.enabled = false, low));
+    }
+    private void MiddleHit()
+    {
+        StartCoroutine(DelayMethod(2.5f, mid => mid.enabled = true, middle));
+        StartCoroutine(DelayMethod(0.3f, mid => mid.enabled = false, middle));
+    }
+    private void HighHit()
+    {
+        StartCoroutine(DelayMethod(2.5f, high => low.enabled = true, high));
+        StartCoroutine(DelayMethod(0.3f, high => low.enabled = false, high));
     }
 }
