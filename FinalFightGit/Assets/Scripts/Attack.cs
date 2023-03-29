@@ -33,8 +33,8 @@ public class Attack : MonoBehaviour
             audioSource.PlayOneShot(punch);
 
             attackable = false;
-            StartCoroutine(DelayMethod(2.5f, low => low.enabled = true, low));
-            StartCoroutine(DelayMethod(0.3f, low => low.enabled = false, low));
+            StartCoroutine(DelayMethod(0.1f, low => low.enabled = true, low));
+            //StartCoroutine(DelayMethod(0.3f, low => low.enabled = false, low));
             attackable = true;
         }
         if (Input.GetKeyDown(KeyCode.I))
@@ -43,8 +43,8 @@ public class Attack : MonoBehaviour
             audioSource.PlayOneShot(upper);
 
             attackable = false;
-            StartCoroutine(DelayMethod(2.5f, mid => mid.enabled = true, middle));
-            StartCoroutine(DelayMethod(0.3f, mid => mid.enabled = false, middle));
+            StartCoroutine(DelayMethod(0.5f, mid => mid.enabled = true, middle));
+            //StartCoroutine(DelayMethod(0.3f, mid => mid.enabled = false, middle));
             attackable = true;
         }
         if (Input.GetKeyDown(KeyCode.K))
@@ -53,8 +53,8 @@ public class Attack : MonoBehaviour
             audioSource.PlayOneShot(bodyblow);
 
             attackable = false;
-            StartCoroutine(DelayMethod(2.5f, high => low.enabled = true, high));
-            StartCoroutine(DelayMethod(0.3f, high => low.enabled = false, high));
+            StartCoroutine(DelayMethod(0.3f, high => high.enabled = true, high));
+            //StartCoroutine(DelayMethod(0.3f, high => low.enabled = false, high));
             attackable = true;
         }
     }
@@ -64,7 +64,7 @@ public class Attack : MonoBehaviour
         switch (name)
         {
             case "low":
-                low.enabled = true;
+                //low.enabled = true;
                 break;
             case "middle":
                 break;
@@ -76,5 +76,7 @@ public class Attack : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         action(col);
+        yield return new WaitForSeconds(0.3f);
+        col.enabled = false;
     }
 }

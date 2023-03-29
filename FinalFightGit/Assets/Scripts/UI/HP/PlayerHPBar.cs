@@ -32,15 +32,26 @@ public class PlayerHPBar : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.gameObject.name == "Low")
+        {
+            TakeDamage(50);
+            Debug.Log("lowDamage");
+        }
         if(collision.gameObject.name == "Mid")
         {
-            TakeDamage(10);
-            Debug.Log("damage");
+            TakeDamage(50);
+            Debug.Log("midDamage");
+        }
+        if(collision.gameObject.name == "High")
+        {
+            TakeDamage(50);
+            Debug.Log("highDamage");
         }
     }
     //îÌÉ_ÉÅÅ[ÉWîΩâfèàóù
     public void TakeDamage(float damage)
     {
+        Debug.Log("damage");
         //å¯â âπ
         audioSource.PlayOneShot(damageSE);
 

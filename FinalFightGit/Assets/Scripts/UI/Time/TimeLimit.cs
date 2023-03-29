@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TimeLimit : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class TimeLimit : MonoBehaviour
         //limitTimeが0以下になったとき
         if (limitTime <= 0)
         {
+            SceneManager.LoadScene("GameOver");
             Debug.Log("制限時間オーバー");
         }
     }

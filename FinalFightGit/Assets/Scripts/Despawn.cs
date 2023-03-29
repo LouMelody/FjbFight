@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Despawn : MonoBehaviour
 {
@@ -24,6 +25,14 @@ public class Despawn : MonoBehaviour
         if (collision.gameObject.name == "High")
             lifeCount--;
         if (lifeCount <= 0)
-            Destroy(gameObject);
+            EnemyDespawn();
+    }
+    private void EnemyDespawn()
+    {
+        if(isBoss)
+        {
+            SceneManager.LoadScene("Clear");
+        }
+        Destroy(gameObject.transform.parent.gameObject);
     }
 }
