@@ -43,4 +43,14 @@ public class Title : MonoBehaviour
 
         keyBinding.SetActive(true);
     }
+
+    public void EndButton()
+    {
+        #if UNITY_EDITOR
+		    UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
+    }
+
 }
